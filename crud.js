@@ -1,12 +1,4 @@
-document.getElementById('cpf').addEventListener('input', function(e) {
-  var value = e.target.value;
-  var cpfPattern = value.replace(/\D/g, '')
-						.replace(/(\d{3})(\d)/, '$1.$2')
-						.replace(/(\d{3})(\d)/, '$1.$2')
-						.replace(/(\d{3})(\d)/, '$1-$2')
-						.replace(/(-\d{2})\d+?$/, '$1');
-  e.target.value = cpfPattern;
-});
+
 const crud = (() => {
   const STORAGE_KEY = "crud-dados";
   let dados = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
@@ -15,6 +7,17 @@ const crud = (() => {
 
   const modal = new bootstrap.Modal(document.getElementById("crudModal"));
   const form = document.getElementById("crud-form");
+	form.addEventListener("input", function (e) {
+  if (e.target && e.target.id === "cpf") {
+    let value = e.target.value;
+    let cpfPattern = value.replace(/\D/g, '')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1-$2')
+      .replace(/(-\d{2})\d+?$/, '$1');
+    e.target.value = cpfPattern;
+  }
+});
   const container = document.getElementById("form-container");
   const templateContent = document.getElementById("form-template").content;
 

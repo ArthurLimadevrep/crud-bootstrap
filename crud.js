@@ -6,18 +6,26 @@ const crud = (() => {
 
   const modal = new bootstrap.Modal(document.getElementById("crudModal"));
   const form = document.getElementById("crud-form");
-	form.addEventListener("input", function (e) {
-  if (e.target && e.target.id === "cpf") {
-    let value = e.target.value;
-    let cpfPattern = value.replace(/\D/g, '')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1-$2')
-      .replace(/(-\d{2})\d+?$/, '$1');
-    e.target.value = cpfPattern;
-  }
-  if (e.target && e.target.id === "cep") {
-    e.target.value = zipCodeMask(e.target.value);
+  const zipCodeMask = (value) => {
+    if (!value) return "";
+    value = value.replace(/\D/g, '');
+    value = value.substring(0, 8);
+    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+    return value;
+  };
+  form.addEventListener("input", function (e) {
+    if (e.target && e.target.id === "cpf") {
+      let value = e.target.value;
+      let cpfPattern = value.replace(/\D/g, '')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1-$2')
+        .replace(/(-\d{2})\d+?$/, '$1');
+      e.target.value = cpfPattern;
+    }
+    if (e.target && e.target.id === "cep") {
+      e.target.value = zipCodeMask(e.target.value);
+    }
 });
   const zipCodeMask = (value) => {
     if (!value) return "";

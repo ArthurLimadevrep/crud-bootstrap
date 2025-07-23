@@ -24,10 +24,15 @@ const crud = (() => {
       e.target.value = cpfPattern;
     }
     if (e.target && e.target.id === "cep") {
-      setTimeout(() => {
-        e.target.value = zipCodeMask(e.target.value);
-      }, 1);
-    }
+  let cursorPosition = e.target.selectionStart;
+  let originalLength = e.target.value.length;
+
+  e.target.value = zipCodeMask(e.target.value);
+
+  let newLength = e.target.value.length;
+  cursorPosition = cursorPosition + (newLength - originalLength);
+  e.target.setSelectionRange(cursorPosition, cursorPosition);
+}
 });
   const container = document.getElementById("form-container");
   const templateContent = document.getElementById("form-template").content;

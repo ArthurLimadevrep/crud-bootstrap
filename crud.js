@@ -1,4 +1,3 @@
-
 const crud = (() => {
   const STORAGE_KEY = "crud-dados";
   let dados = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];

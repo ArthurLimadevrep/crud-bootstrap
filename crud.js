@@ -24,10 +24,11 @@ const crud = (() => {
       e.target.value = cpfPattern;
     }
     if (e.target && e.target.id === "cep") {
-      e.target.value = zipCodeMask(e.target.value);
+      setTimeout(() => {
+        e.target.value = zipCodeMask(e.target.value);
+      }, 1);
     }
 });
-
   const container = document.getElementById("form-container");
   const templateContent = document.getElementById("form-template").content;
 

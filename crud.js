@@ -27,13 +27,6 @@ const crud = (() => {
       e.target.value = zipCodeMask(e.target.value);
     }
 });
-  const zipCodeMask = (value) => {
-    if (!value) return "";
-    value = value.replace(/\D/g, '');
-    value = value.substring(0, 8);
-    value = value.replace(/(\d{5})(\d)/, '$1-$2');
-    return value;
-};
 
   const container = document.getElementById("form-container");
   const templateContent = document.getElementById("form-template").content;
